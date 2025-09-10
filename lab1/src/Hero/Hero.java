@@ -2,9 +2,12 @@ package Hero;
 import MovingType.*;
 
 public class Hero {
-    MovingType movingType;
+    private MovingType movingType = new OnFootMove();
 
     public void setMoving(MovingType movingType) {
+        if (movingType == null) {
+            throw new IllegalArgumentException("MovingType cannot be null");
+        }
         this.movingType = movingType;
     }
 

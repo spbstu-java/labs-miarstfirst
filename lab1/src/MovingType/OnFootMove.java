@@ -2,6 +2,6 @@ package MovingType;
 
 public class OnFootMove implements MovingType{
     public void move(){
-        System.out.println("1. OnFootMove");
+        System.out.println("1. Герой бежит");
     }
 }
