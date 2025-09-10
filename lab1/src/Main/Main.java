@@ -13,28 +13,34 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Hero hero = new Hero();
 
+        String instruction = "Введите 1, 2 или 3 (для выхода введите 0):";
         int userInput;
 
-        System.out.println("Введите что-нибудь (для выхода введите 0):");
+        System.out.println(instruction);
 
         while (true) {
-            userInput = scanner.nextInt();
+            if(scanner.hasNextInt()){
+                userInput = scanner.nextInt();
+                if (userInput == 0) {
+                    System.out.println("Герой дошел.");
+                    break;
+                } else if (userInput == 1){
+                    hero.setMoving(new OnFootMove());
+                } else if (userInput == 2){
+                    hero.setMoving(new HorseMove());
+                } else if (userInput == 3){
+                    hero.setMoving(new FlightMove());
+                } else {
+                    System.out.println("Герой так не умеет!");
+                    continue;
+                }
 
-            if (userInput == 0) {
-                System.out.println("Герой дошел.");
-                break;
-            } else if (userInput == 1){
-                hero.setMoving(new OnFootMove());
-            } else if (userInput == 2){
-                hero.setMoving(new HorseMove());
-            } else if (userInput == 3){
-                hero.setMoving(new FlightMove());
+                hero.move();
             } else {
-                System.out.println("Герой так не умеет!");
-                continue;
+                System.out.println(instruction);
+                scanner.next();
             }
 
-            hero.move();
         }
         scanner.close();
     }
